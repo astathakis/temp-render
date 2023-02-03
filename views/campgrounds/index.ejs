@@ -1,0 +1,50 @@
+<!-- using ejs-mate -->
+<!-- the layout refers to the body in the layouts boilerplate -->
+<% layout('layouts/boilerplate') %>
+
+<div id="cluster-map"></div>
+
+<h1>All Campgrounds</h1>
+<!-- <div>
+  <a href="/campgrounds/new">Add Campground</a>
+</div> -->
+<% for(let campground of campgrounds) { %>
+<div class="card mb-3">
+  <div class="row">
+    <!-- column medium 4 takes space for img -->
+    <div class="col-md-4">
+      <% if(campground.images.length) {%>
+      <img src="<%=campground.images[0].url%>" alt="" class="img-fluid" />
+      <% } else {%>
+      <img
+        src="https://res.cloudinary.com/dbowbbm3q/image/upload/v1674649907/YelpCamp/y3fg6kgybn7oficwhkon.jpg"
+        alt=""
+        class="img-fluid"
+      />
+      <% } %>
+    </div>
+    <!-- column medium 4 takes space for body -->
+
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%=campground.title%></h5>
+        <p class="card-text"><%=campground.description%></p>
+        <p>
+          <small class="text-muted"><%=campground.location%></small>
+        </p>
+        <a class="btn btn-primary" href="/campgrounds/<%=campground._id%>"
+          >View <%=campground.title%></a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<% } %>
+
+<script>
+  const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+  const campgrounds = {features:<%- JSON.stringify(campgrounds) %>};
+</script>
+
+<script src="javascripts/clusterMap.js"></script>
