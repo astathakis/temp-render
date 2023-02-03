@@ -39,9 +39,10 @@ const dbUrl = process.env.DB_URL || 'mongodb://0.0.0.0:27017/yelp-camp';
 
 // 'mongodb://localhost:27017/yelp-camp'
 
-mongoose.connect(dbUrl, {
-  //mongoose 6 no longer support useNewUrlParser,useCreateIndex,useUnifiedTopology
-});
+mongoose.connect(
+  'mongodb+srv://tasos:cvdeB5WkziQ9Wt10@nodeexpressprojects.mtfjvha.mongodb.net/?retryWrites=true&w=majority'
+);
+//mongoose 6 no longer support useNewUrlParser,useCreateIndex,useUnifiedTopology
 // mongoose.connect('mongodb://localhost:27017/yelp-camp', {
 //   //mongoose 6 no longer support useNewUrlParser,useCreateIndex,useUnifiedTopology
 // });
